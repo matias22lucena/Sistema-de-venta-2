@@ -1,0 +1,104 @@
+/* Botón de despliegue angosto y alineado a la esquina superior izquierda */
+.toggle-button {
+    position: fixed;
+    width: 50px;
+    top: 1rem;
+    left: 10px;
+    background: rgba(143, 23, 23, 0.2);
+    border: none;
+    border-radius: 5px;
+    padding: 0.2rem 0.2rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Estilo para la barra lateral desplegable */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(170, 30, 30, 0.9);
+    padding: 1rem;
+    padding-left: 40px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.3s ease;
+    font-size: 15px;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar h2 {
+    color: #fff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Tamaño uniforme para los botones del menú */
+.menu-button {
+    width: 120%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 250px;
+}
+
+/* Información del usuario en la esquina superior derecha */
+.user-info {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de cerrar sesión */
+.logout-button {
+
+    padding: 8px 16px;
+    background-color: rgba(255, 77, 77, 0.8); /* Color rojo semi-transparente */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: rgba(255, 51, 51, 1); /* Color rojo más intenso */
+}

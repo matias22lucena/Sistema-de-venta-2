@@ -1,0 +1,208 @@
+/* Contenedor de sección para Usuarios */
+.section-container-Usuario {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-top: 60px;
+}
+
+.section-container-Usuario h1 {
+    font-size: 22px;
+    margin-bottom: 16px;
+    color: #222;
+    font-weight: bold;
+}
+
+/* Botón para añadir usuarios y botones de acción */
+.add-button, .action-button.delete {
+    padding: 10px 20px;
+    background-color: #FF4B4B; /* Rojo para el botón de agregar y eliminar */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-right: 8px;
+}
+.add-button, .action-button {
+    padding: 10px 20px;
+    background-color: #FF4B4B; /* Rojo para el botón de agregar y eliminar */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-right: 8px;
+}
+
+.add-button:hover, .action-button.delete:hover {
+    background-color: #d43f3f;
+}
+
+/* Estilos de la tabla */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 14px;
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: normal;
+}
+
+
+.navbar {
+  /*background-color: rgba(255, 255, 255, 0.1); /* Fondo transparente */
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between; /* Espacio entre el logo (izquierda) y los links (derecha) */
+    align-items: center;
+}
+
+/* Agrega una clase para el logo, si tienes un logo o título */
+.navbar .logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    margin-left: auto; /* Empuja los elementos de la lista a la derecha */
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Asegura que el contenido principal esté debajo del navbar */
+.section-container-Usuario {
+    padding-top: 4rem; /* Ajusta el espacio según el alto del navbar */
+}
+/* Botón para agregar usuario */
+.add-button {
+    padding: 10px 20px;
+    background-color: #FF4B4B; /* Rojo */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.add-button:hover {
+    background-color: #d43f3f;
+}
+
+/* Estilos del formulario */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.form-container h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.form-container input, 
+.form-container select, 
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-container input[type="text"], 
+.form-container input[type="email"], 
+.form-container input[type="password"] {
+    background-color: #ffffff;
+    color: black;
+}
+
+.form-container select {
+    background-color: #f9f9f9;
+    cursor: pointer;
+    color: black;
+}
+
+.form-container button {
+    background-color: #4CAF50; /* Verde para el botón de submit */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #45a049;
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Transición del formulario cuando se despliega */
+.form-container {
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(10px);
+}
+
+.form-container.open {
+    transform: translateY(0);
+}
+.search-input{
+    width: 60%;
+    border-radius: 20px;
+    padding: 6px;
+    
+}
