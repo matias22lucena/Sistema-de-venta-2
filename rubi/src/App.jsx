@@ -1,7 +1,7 @@
 // Importaciones necesarias de React y react-router-dom
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Formulario } from './componentes/Formulario';
-import { Home } from './componentes/Home';
+import { Home } from './componentes/home';
 import Usuarios from './componentes/Usuarios'; // Import correcto
 import Proveedores from './componentes/Proveedores';
 

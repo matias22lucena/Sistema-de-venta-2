@@ -15,12 +15,12 @@ export function Home({ user, setUser }) {
 
     return (
         <div className="container">
-            {/* Botón de despliegue de la barra de navegación */}
-            <button className="toggle-button" onClick={() => document.querySelector('.sidebar').classList.toggle('open')}>
-                ☰
-            </button>
+            {/* Mensaje de bienvenida en la esquina superior derecha */}
+            <div className="welcome-message">
+                Bienvenido, {user.name}
+            </div>
 
-            {/* Barra lateral de navegación */}
+            {/* Barra lateral de navegación siempre visible */}
             <div className="sidebar">
                 <h2>Panel de Navegación</h2>
                 <Link to="/usuarios">
@@ -48,11 +48,7 @@ export function Home({ user, setUser }) {
                         </Link>
                     </>
                 )}
-            </div>
-
-            {/* Sección de información del usuario */}
-            <div className="user-info">
-                <span>Bienvenido, {user.name}</span>
+                {/* Botón de cerrar sesión en el panel */}
                 <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
             </div>
 
