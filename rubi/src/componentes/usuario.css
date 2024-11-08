@@ -18,38 +18,27 @@
     font-weight: bold;
 }
 
-/* Botón para añadir usuarios y botones de acción */
-.add-button, .action-button.delete {
-    padding: 10px 20px;
-    background-color: #FF4B4B; /* Rojo para el botón de agregar y eliminar */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+/* Estilos del campo de búsqueda */
+.search-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #f9f9f9;
+    color: #333;
     font-size: 14px;
-    transition: background-color 0.3s;
-    margin-right: 8px;
-}
-.add-button, .action-button {
-    padding: 10px 20px;
-    background-color: #016efd; /* Rojo para el botón de agregar y eliminar */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    margin-right: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.add-button:hover, .action-button.delete:hover {
-    background-color: #d43f3f;
-}
-.add-button:hover, .action-button:hover {
-    background-color: #064bca;
+/* Efectos de hover en el input de búsqueda */
+.search-input:focus {
+    border-color: #ff7777;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.4);
 }
 
-/* Estilos de la tabla */
+/* Estilo de la tabla */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -70,7 +59,25 @@
     font-weight: normal;
 }
 
+/* Estilos del botón de agregar */
+.add-button {
+    padding: 10px 20px;
+    background-color: #e15050; /* Rojo */
+    color: #fff;
+    border: none;
+    border-radius: px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
 
+.add-button:hover {
+    background-color: #a21818;
+}
+
+/* Contenedor de la barra de navegación */
 .navbar {
     background-color: rgba(255, 255, 255, 0.1); /* Fondo transparente */
     padding: 1rem;
@@ -81,24 +88,18 @@
     width: 100%;
     z-index: 10;
     display: flex;
-    justify-content: space-between; /* Espacio entre el logo (izquierda) y los links (derecha) */
+    justify-content: space-between;
     align-items: center;
 }
 
-/* Agrega una clase para el logo, si tienes un logo o título */
-.navbar .logo {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
+/* Contenedor para los links de navegación */
 .navbar ul {
     list-style: none;
     display: flex;
     gap: 1rem;
     padding: 0;
     margin: 0;
-    margin-left: auto; /* Empuja los elementos de la lista a la derecha */
+    margin-left: auto;
     margin-bottom: 20px;
     font-size: 20px;
 }
@@ -107,7 +108,6 @@
     color: white;
     text-decoration: none;
     font-weight: bold;
-    
 }
 
 .navbar ul li a:hover {
@@ -118,23 +118,19 @@
 .section-container-Usuario {
     padding-top: 4rem; /* Ajusta el espacio según el alto del navbar */
 }
-/* Botón para agregar usuario */
-.add-button {
-    padding: 10px 20px;
-    background-color: #e15050; /* Rojo */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    margin-bottom: 20px;
-    max-width: 300px;
-    
+
+/* Contenedor de búsqueda con alineación */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
 }
 
-.add-button:hover {
-    background-color: #a21818;
+/* Mensaje de error */
+.error-message {
+    color: #ff1900;
+    font-size: 14px;
+    text-align: center;
 }
 
 /* Estilos del formulario */
@@ -179,7 +175,7 @@
 }
 
 .form-container button {
-    background-color: #e15050; /* Verde para el botón de submit */
+    background-color: #e15050; /* Rojo para el botón de submit */
     color: white;
     border: none;
     cursor: pointer;
@@ -187,13 +183,6 @@
 
 .form-container button:hover {
     background-color: #a21818;
-}
-
-/* Mensaje de error */
-.error-message {
-    color: #ff1900;
-    font-size: 14px;
-    text-align: center;
 }
 
 /* Transición del formulario cuando se despliega */
@@ -206,44 +195,24 @@
     transform: translateY(0);
 }
 
-/* Estilo del campo de búsqueda */
-.search-input {
-    width: 300px; /* Máxima anchura del input */
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    background-color: #f9f9f9;
-    color: #333;
+/* Estilos de las acciones */
+.action-button {
+    padding: 10px 20px;
+    background-color: #ff7777; /* Azul */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s;
+    margin-right: 8px;
 }
 
-
-/* Contenedor principal */
-.header-container {
-    display: flex;
-    justify-content: space-between; /* Distribuye espacio entre los elementos */
-    align-items: flex-start; /* Alinea los elementos al inicio del eje transversal */
-    margin-top: 10px; /* Espacio superior */
-    padding: 0 10px; /* Padding a los lados */
+.action-button:hover {
+    background-color: #ff7777;
 }
 
-/* Contenedor de la parte izquierda (titulo y botón) */
-.left-side {
-    display: flex;
-    flex-direction: column; /* Alinea los elementos verticalmente */
-    gap: 1px; /* Espacio entre el h1 y el botón */
-}
-
-/* Contenedor para el input de búsqueda */
-.search-container {
-    display: flex;
-    align-items: center; /* Centra el campo de búsqueda verticalmente */
-    margin-top: 50px;
-}
-
-.button_edit{
+button.button_edit{
     padding: 10px 20px;
     background-color: #e15050; /* Rojo */
     color: #fff;
@@ -252,5 +221,33 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s;
+    margin-bottom: 20px;
     max-width: 300px;
+}
+button.button_delete{
+    padding: 10px 20px;
+    background-color: #e15050; /* Rojo */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+/* Estilo del contenedor principal */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+/* Estilo para el lado izquierdo de los elementos */
+.left-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
 }

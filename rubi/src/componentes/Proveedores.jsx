@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Section.css';
+import './proveedores.css';
 
 function Proveedores() {
     const [proveedores, setProveedores] = useState([]);
@@ -60,7 +60,6 @@ function Proveedores() {
             // Refrescar la lista de proveedores
             const response = await axios.get('http://localhost:3001/api/proveedores');
             setProveedores(response.data);
-        // eslint-disable-next-line no-unused-vars
         } catch (err) {
             setError('Error al registrar o actualizar proveedor');
         }
@@ -70,7 +69,6 @@ function Proveedores() {
         try {
             await axios.delete(`http://localhost:3001/api/proveedores/${id}`);
             setProveedores(proveedores.filter((proveedor) => proveedor.idProveedor !== id));
-        // eslint-disable-next-line no-unused-vars
         } catch (err) {
             setError('Error al eliminar proveedor');
         }
