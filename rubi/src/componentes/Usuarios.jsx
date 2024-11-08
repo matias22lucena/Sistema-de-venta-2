@@ -1,11 +1,9 @@
 // src/pages/Usuarios.jsx
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react"; // Importa React y hooks de estado y efectos
 import axios from "axios"; // Importa Axios para hacer peticiones HTTP
-import "./Section.css"; // Importa el archivo CSS para estilizar el componente
+import "./usuario.css"; // Importa el archivo CSS para estilizar el componente
 
 function Usuarios() {
-  // Definición de los estados locales para manejar los datos y la UI
   const [usuarios, setUsuarios] = useState([]); // Estado para almacenar la lista de usuarios
   const [searchTerm, setSearchTerm] = useState(""); // Estado para almacenar el término de búsqueda
   const [showForm, setShowForm] = useState(false); // Estado para controlar si el formulario de agregar/editar usuario está visible
@@ -26,6 +24,7 @@ function Usuarios() {
     const fetchUsuarios = async () => {
       try {
         const response = await axios.get("http://localhost:3001/api/usuarios");
+        console.log(response.data); // Verifica los datos de la respuesta
         setUsuarios(response.data); // Almacena los usuarios obtenidos en el estado
       } catch (err) {
         console.error("Error al cargar usuarios:", err); // Maneja el error si no se puede cargar
@@ -76,7 +75,6 @@ function Usuarios() {
       // Vuelve a cargar la lista de usuarios
       const response = await axios.get("http://localhost:3001/api/usuarios");
       setUsuarios(response.data);
-    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setError("Error al registrar o actualizar usuario"); // Muestra el error si hay alguno
     }
@@ -123,12 +121,14 @@ function Usuarios() {
   };
 
   // Filtrar usuarios según el término de búsqueda (ignora mayúsculas y minúsculas)
-  const filteredUsuarios = usuarios.filter((usuario) =>
-    Object.values(usuario)
-      .join(" ")
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
+  const filteredUsuarios = searchTerm
+    ? usuarios.filter((usuario) =>
+        Object.values(usuario)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+      )
+    : usuarios; // Si no hay término de búsqueda, muestra todos los usuarios
 
   return (
     <div className="section-container-Usuario">
@@ -239,10 +239,12 @@ function Usuarios() {
               <td>{usuario.NombreCompleto}</td>
               <td>{usuario.Correo}</td>
               <td>{usuario.Telefono}</td>
-              <td>{usuario.idRol === 1 ? "Admin" : "Empleado"}</td>
+              <td>{usuario.Rol}</td>
               <td>
-                <button className="button_edit" onClick={() => handleEdit(usuario)}>Editar</button>
-                <button className="button_edit" onClick={() => handleDelete(usuario.idUsuario)}>
+                <button className="button_edit" onClick={() => handleEdit(usuario)}>
+                  Editar
+                </button>
+                <button className="button_delete" onClick={() => handleDelete(usuario.idUsuario)}>
                   Eliminar
                 </button>
               </td>
