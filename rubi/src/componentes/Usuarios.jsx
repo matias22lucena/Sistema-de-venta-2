@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react"; // Importa React y hooks de estado y efectos
 import axios from "axios"; // Importa Axios para hacer peticiones HTTP
 import "./usuario.css"; // Importa el archivo CSS para estilizar el componente
+import "./home.jsx"
 
 function Usuarios() {
   const [usuarios, setUsuarios] = useState([]); // Estado para almacenar la lista de usuarios
@@ -132,14 +133,6 @@ function Usuarios() {
 
   return (
     <div className="section-container-Usuario">
-      <nav className="navbar">
-        <ul>
-          <li>
-            <a href="/home">Inicio</a>
-          </li>
-        </ul>
-      </nav>
-
       <div className="header-container">
         <div className="left-side">
           <h1>Gestión de Usuarios</h1>

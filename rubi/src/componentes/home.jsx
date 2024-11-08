@@ -1,11 +1,13 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Usuarios from './Usuarios'; // Importamos el componente Usuarios
+import Proveedores from './Proveedores';
 import './Home.css';
 
 export function Home({ user, setUser }) {
     const navigate = useNavigate();
+    const [activeComponent, setActiveComponent] = useState('usuarios'); // Estado para seleccionar el panel activo
 
     // Función para manejar el logout
     const handleLogout = () => {
@@ -15,45 +17,31 @@ export function Home({ user, setUser }) {
 
     return (
         <div className="container">
-            {/* Mensaje de bienvenida en la esquina superior derecha */}
             <div className="welcome-message">
                 Bienvenido, {user.name}
             </div>
 
-            {/* Barra lateral de navegación siempre visible */}
             <div className="sidebar">
                 <h2>Panel de Navegación</h2>
-                <Link to="/usuarios">
-                    <button className="menu-button">Usuarios</button>
-                </Link>
-                <Link to="/proveedores">
-                    <button className="menu-button">Proveedores</button>
-                </Link>
-                <Link to="/sucursales">
-                    <button className="menu-button">Sucursales</button>
-                </Link>
-                <Link to="/productos">
-                    <button className="menu-button">Productos</button>
-                </Link>
-                <Link to="/ventas">
-                    <button className="menu-button">Ventas</button>
-                </Link>
+                <button className="menu-button" onClick={() => setActiveComponent('usuarios')}>Usuarios</button>
+                <button className="menu-button" onClick={() => setActiveComponent('proveedores')}>Proveedores</button>
+                <button className="menu-button" onClick={() => setActiveComponent('sucursales')}>Sucursales</button>
+                <button className="menu-button" onClick={() => setActiveComponent('productos')}>Productos</button>
+                <button className="menu-button" onClick={() => setActiveComponent('ventas')}>Ventas</button>
                 {user.role === 'admin' && (
                     <>
-                        <Link to="/stock">
-                            <button className="menu-button">Stock</button>
-                        </Link>
-                        <Link to="/reportes">
-                            <button className="menu-button">Reportes</button>
-                        </Link>
+                        <button className="menu-button" onClick={() => setActiveComponent('stock')}>Stock</button>
+                        <button className="menu-button" onClick={() => setActiveComponent('reportes')}>Reportes</button>
                     </>
                 )}
-                {/* Botón de cerrar sesión en el panel */}
                 <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
             </div>
 
             <div className="main-content">
-                {/* Aquí va el contenido principal */}
+                {/* Renderiza el componente según el panel activo */}
+                {activeComponent === 'usuarios' && <Usuarios />}
+                {activeComponent === 'proveedores' && <Proveedores />}
+                {/* Aquí se pueden agregar otros componentes como <Proveedores />, <Sucursales />, etc. */}
             </div>
         </div>
     );
@@ -66,3 +54,4 @@ Home.propTypes = {
     }).isRequired,
     setUser: PropTypes.func.isRequired,
 };
+
