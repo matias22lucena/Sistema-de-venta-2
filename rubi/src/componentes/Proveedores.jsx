@@ -13,7 +13,7 @@ function Proveedores() {
         telefono: '',
         email: '',
         tipoProveedor: '',
-        estado: true,
+        estado: 'Activo',
         fechaRegistro: '' // Nuevo campo para la fecha
     });
     const [error, setError] = useState(null);
@@ -34,10 +34,9 @@ function Proveedores() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // Si el campo es 'estado', manejamos el valor como un booleano (true o false)
         setFormData({ 
             ...formData, 
-            [name]: name === 'estado' ? value === '1' : value 
+            [name]: value 
         });
     };
 
@@ -45,21 +44,19 @@ function Proveedores() {
         e.preventDefault();
         try {
             if (isEditing) {
-                // Si estamos editando, usamos PUT para actualizar
                 await axios.put(`http://localhost:3001/api/proveedores/${editingProveedorId}`, formData);
                 setIsEditing(false);
                 setEditingProveedorId(null);
             } else {
-                // Si estamos creando, usamos POST para insertar
                 await axios.post('http://localhost:3001/api/proveedores', formData);
             }
             setShowForm(false);
-            setFormData({ nombre: '', direccion: '', telefono: '', email: '', tipoProveedor: '', estado: true, fechaRegistro: '' });
+            setFormData({ nombre: '', direccion: '', telefono: '', email: '', tipoProveedor: '', estado: 'Activo', fechaRegistro: '' });
             setError(null);
 
-            // Refrescar la lista de proveedores
             const response = await axios.get('http://localhost:3001/api/proveedores');
             setProveedores(response.data);
+        // eslint-disable-next-line no-unused-vars
         } catch (err) {
             setError('Error al registrar o actualizar proveedor');
         }
@@ -69,6 +66,7 @@ function Proveedores() {
         try {
             await axios.delete(`http://localhost:3001/api/proveedores/${id}`);
             setProveedores(proveedores.filter((proveedor) => proveedor.idProveedor !== id));
+        // eslint-disable-next-line no-unused-vars
         } catch (err) {
             setError('Error al eliminar proveedor');
         }
@@ -81,7 +79,7 @@ function Proveedores() {
             telefono: proveedor.Telefono,
             email: proveedor.Email,
             tipoProveedor: proveedor.TipoProveedor,
-            estado: !!proveedor.Estado,
+            estado: proveedor.Estado || 'Inactivo',
             fechaRegistro: proveedor.FechaRegistro ? proveedor.FechaRegistro.slice(0, 10) : ''
         });
         setIsEditing(true);
@@ -112,14 +110,13 @@ function Proveedores() {
                         <input type="email" name="email" placeholder="Correo" value={formData.email} onChange={handleChange} />
                         <input type="text" name="tipoProveedor" placeholder="Tipo de Proveedor" value={formData.tipoProveedor} onChange={handleChange} />
                         
-                        {/* Campo de estado */}
                         <label>Estado:</label>
-                        <select name="estado" value={formData.estado ? '1' : '0'} onChange={handleChange}>
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
+                        <select name="estado" value={formData.estado} onChange={handleChange}>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
                         </select>
                         
-                        <input type="date" name="fechaRegistro" value={formData.fechaRegistro} onChange={handleChange} /> {/* Campo de fecha */}
+                        <input type="date" name="fechaRegistro" value={formData.fechaRegistro} onChange={handleChange} />
                         <button type="submit">{isEditing ? 'Actualizar' : 'Registrar'}</button>
                     </form>
                     {error && <p className="error-message">{error}</p>}
@@ -155,8 +152,10 @@ function Proveedores() {
                             <td>{proveedor.Telefono}</td>
                             <td>{proveedor.Email}</td>
                             <td>{proveedor.TipoProveedor}</td>
-                            <td>{proveedor.Estado ? 'Activo' : 'Inactivo'}</td>
-                            <td>{new Date(proveedor.FechaRegistro).toLocaleDateString()}</td>
+                            <td>{proveedor.Estado}</td>
+
+
+                            <td>{proveedor.FechaRegistro ? proveedor.FechaRegistro.slice(0, 10) : ''}</td>
                             <td>
                                 <button onClick={() => handleEdit(proveedor)}>Editar</button>
                                 <button onClick={() => handleDelete(proveedor.idProveedor)}>Eliminar</button>

@@ -14,7 +14,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   port: '3306',
   user: 'root',
-  password: 'Maxigarcia4554', // Asegúrate de que la contraseña sea correcta
+  password: 'matute', // Asegúrate de que la contraseña sea correcta
   database: 'SistemaVentas' // Asegúrate de que la base de datos exista
 });
 
@@ -121,6 +121,70 @@ app.put('/api/usuarios/:id', (req, res) => {
     res.status(200).json({ message: 'Usuario actualizado exitosamente' });
   });
 });
+// Ruta para obtener la lista de proveedores
+// Ruta para obtener la lista de proveedores con transformación de Estado
+// Transformación del Estado a 'Activo' o 'Inactivo'
+// Ruta para obtener la lista de proveedores con transformación de Estado
+app.get('/api/proveedores', (req, res) => {
+  const query = 'SELECT * FROM PROVEEDOR';
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Error al obtener proveedores:', err);
+          return res.status(500).json({ message: 'Error al obtener proveedores' });
+      }
+
+      // Transformar el campo Estado de 0/1 a 'Inactivo'/'Activo'
+      const transformedResults = results.map((proveedor) => ({
+          ...proveedor,
+          Estado: proveedor.Estado === 1 ? 'Activo' : 'Inactivo'
+      }));
+
+      console.log('Resultados transformados:', transformedResults); // Depuración
+      res.json(transformedResults);
+  });
+});
+
+
+
+// Ruta para crear un nuevo proveedor
+app.post('/api/proveedores', (req, res) => {
+  const { nombre, direccion, telefono, email, tipoProveedor, estado } = req.body;
+  
+  const query = `
+    INSERT INTO PROVEEDOR (Nombre, Direccion, Telefono, Email, TipoProveedor, Estado, FechaRegistro) 
+    VALUES (?, ?, ?, ?, ?, ?, NOW())
+  `;
+  
+  db.query(query, [nombre, direccion, telefono, email, tipoProveedor, estado || 'Inactivo'], (err) => {
+    if (err) {
+      console.error('Error al crear proveedor:', err);
+      return res.status(500).json({ message: 'Error al crear proveedor', error: err });
+    }
+    res.status(201).json({ message: 'Proveedor creado exitosamente' });
+  });
+});
+
+// Ruta para actualizar un proveedor
+app.put('/api/proveedores/:id', (req, res) => {
+  const { id } = req.params;
+  const { nombre, direccion, telefono, email, tipoProveedor, estado } = req.body;
+
+  const query = `
+    UPDATE PROVEEDOR 
+    SET Nombre = ?, Direccion = ?, Telefono = ?, Email = ?, TipoProveedor = ?, Estado = ? 
+    WHERE idProveedor = ?
+  `;
+  
+  db.query(query, [nombre, direccion, telefono, email, tipoProveedor, estado || 'Inactivo', id], (err) => {
+    if (err) {
+      console.error('Error al actualizar proveedor:', err);
+      return res.status(500).json({ message: 'Error al actualizar proveedor', error: err });
+    }
+    res.json({ message: 'Proveedor actualizado exitosamente' });
+  });
+});
+
+
 
 // Iniciar el servidor en el puerto 3001
 app.listen(PORT, () => {
