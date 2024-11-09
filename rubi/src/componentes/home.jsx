@@ -1,4 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Usuarios from './Usuarios'; // Importamos el componente Usuarios
