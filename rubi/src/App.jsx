@@ -4,6 +4,7 @@ import { Formulario } from './componentes/Formulario';
 import { Home } from './componentes/home';
 import Usuarios from './componentes/Usuarios'; // Import correcto
 import Proveedores from './componentes/Proveedores';
+import Stock from './componentes/Stock';
 
 import { useState, useEffect } from 'react';
 import './App.css';
@@ -37,7 +38,7 @@ function App() {
           {/* Ruta para el componente Home */}
           <Route path="/home" element={<Home user={user} setUser={setUser} />} />
           <Route path="/proveedores" element={<Proveedores />} />
-
+          <Route path="/stock" element={<Stock/>}/>
         </Routes>
       </div>
     </Router>

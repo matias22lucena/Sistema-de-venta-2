@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Usuarios from './Usuarios'; // Importamos el componente Usuarios
 import Proveedores from './Proveedores';
+import Stock from './Stock'
+import Sucursales from './Sucursales';
 import './Home.css';
 
 export function Home({ user, setUser }) {
@@ -41,6 +43,8 @@ export function Home({ user, setUser }) {
                 {/* Renderiza el componente según el panel activo */}
                 {activeComponent === 'usuarios' && <Usuarios />}
                 {activeComponent === 'proveedores' && <Proveedores />}
+                {activeComponent === 'stock' && <Stock />}
+                {activeComponent === 'sucursales' && <Sucursales/>}
                 {/* Aquí se pueden agregar otros componentes como <Proveedores />, <Sucursales />, etc. */}
             </div>
         </div>

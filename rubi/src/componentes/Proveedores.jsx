@@ -24,6 +24,7 @@ function Proveedores() {
         const fetchProveedores = async () => {
             try {
                 const response = await axios.get('http://localhost:3001/api/proveedores');
+                console.log('Datos recibidos:', response.data); // Depuración
                 setProveedores(response.data);
             } catch (err) {
                 console.error('Error al cargar proveedores:', err);
@@ -54,6 +55,7 @@ function Proveedores() {
             setFormData({ nombre: '', direccion: '', telefono: '', email: '', tipoProveedor: '', estado: 'Activo', fechaRegistro: '' });
             setError(null);
 
+            // Refrescar la lista de proveedores
             const response = await axios.get('http://localhost:3001/api/proveedores');
             setProveedores(response.data);
         // eslint-disable-next-line no-unused-vars
@@ -153,8 +155,6 @@ function Proveedores() {
                             <td>{proveedor.Email}</td>
                             <td>{proveedor.TipoProveedor}</td>
                             <td>{proveedor.Estado}</td>
-
-
                             <td>{proveedor.FechaRegistro ? proveedor.FechaRegistro.slice(0, 10) : ''}</td>
                             <td>
                                 <button onClick={() => handleEdit(proveedor)}>Editar</button>
