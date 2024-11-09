@@ -14,8 +14,8 @@
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'matute', // Asegúrate de que la contraseña sea correcta
-    database: 'SistemaVentas' // Asegúrate de que la base de datos exista
+    password: 'Maxigarcia4554', // Asegúrate de que la contraseña sea correcta
+    database: 'sistemaventas' // Asegúrate de que la base de datos exista
   });
 
   // Conecta a MySQL y verifica si hay errores

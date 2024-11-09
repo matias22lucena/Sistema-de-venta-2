@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Sucursales.css';
@@ -71,28 +70,33 @@ function Sucursales() {
     );
 
     return (
-        <div className="section-container-Usuario">
-            <h1>Gestión de Sucursales</h1>
+        <div className="sucursales-section-container">
+            <div className="sucursales-header-container">
+                <h1>Gestión de Sucursales</h1>
 
-            <input
-                className="search-input"
-                type="text"
-                placeholder="Buscar sucursal..."
-                value={terminoBusqueda}
-                onChange={(e) => setTerminoBusqueda(e.target.value)}
-            />
+                <div className="sucursales-header-actions">
+                    <input
+                        className="sucursales-search-input"
+                        type="text"
+                        placeholder="Buscar sucursal..."
+                        value={terminoBusqueda}
+                        onChange={(e) => setTerminoBusqueda(e.target.value)}
+                    />
+                </div>
+            </div>
 
-            {!mostrarFormulario && ( // Solo muestra el botón "Agregar Sucursal" cuando el formulario está oculto
+            {/* Mover el botón directamente debajo del título */}
+            <div className="sucursales-add-button-container">
                 <button
-                    className="toggle-form-button"
+                    className="sucursales-toggle-form-button"
                     onClick={() => setMostrarFormulario(true)}
                 >
                     Agregar Sucursal
                 </button>
-            )}
+            </div>
 
             {mostrarFormulario && (
-                <div className="form-container">
+                <div className="sucursales-form-container">
                     <h2>{modoEdicion ? 'Editar Sucursal' : 'Agregar Sucursal'}</h2>
                     <input
                         type="text"
@@ -122,7 +126,7 @@ function Sucursales() {
             )}
 
             <h2>Lista de Sucursales</h2>
-            <table border="1" className="data-table">
+            <table border="1" className="sucursales-data-table">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -132,14 +136,21 @@ function Sucursales() {
                     </tr>
                 </thead>
                 <tbody>
-                    {sucursalesFiltradas.map((sucursal) => (
+                    {sucursalesFiltradas.map(sucursal => (
                         <tr key={sucursal.idSucursal}>
                             <td>{sucursal.Nombre}</td>
                             <td>{sucursal.Direccion}</td>
                             <td>{sucursal.Telefono}</td>
                             <td>
-                                <button className="action-button" onClick={() => manejarEdicion(sucursal)}>Editar</button>
-                                <button className="action-button" onClick={() => eliminarSucursal(sucursal.idSucursal)}>Eliminar</button>
+                                <button className="sucursales-action-button" onClick={() => manejarEdicion(sucursal)}>
+                                    Editar
+                                </button>
+                                <button
+                                    className="sucursales-action-button"
+                                    onClick={() => eliminarSucursal(sucursal.idSucursal)}
+                                >
+                                    Eliminar
+                                </button>
                             </td>
                         </tr>
                     ))}
@@ -150,3 +161,5 @@ function Sucursales() {
 }
 
 export default Sucursales;
+
+

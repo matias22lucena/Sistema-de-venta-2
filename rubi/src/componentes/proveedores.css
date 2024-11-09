@@ -1,29 +1,52 @@
-/* Contenedor principal de la sección */
-.section-container-Usuario {
+/* Contenedor principal de proveedores */
+.proveedores-section-container {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1000px;
     color: #333;
     font-family: Arial, sans-serif;
-    margin-top: 60px;
+    
 }
 
-/* Estilos para el título */
-.section-container-Usuario h1 {
+/* Contenedor para el título, botón y campo de búsqueda */
+.proveedores-header-container {
+    display: flex;
+    flex-direction: column;  /* Coloca los elementos verticalmente */
+    align-items: flex-start;  /* Alinea los elementos a la izquierda */
+    width: 100%;
+}
+
+/* Estilo para el título */
+.proveedores-header-container h1 {
     font-size: 22px;
-    margin-bottom: 16px;
+    margin-bottom: 10px; /* Espacio entre el título y el botón */
     color: #222;
     font-weight: bold;
 }
 
-/* Estilos del campo de búsqueda */
-.search-input {
+/* Estilo para el botón Agregar Proveedor */
+.proveedores-header-container button {
+    margin-left: 0; /* Eliminar margen izquierdo */
+    margin-top: 10px; /* Agregar un margen superior al botón si es necesario */
+}
+
+/* Estilo para el input de búsqueda */
+.proveedores-search-input {
+    margin-left: auto;  /* Esto empuja el input hacia el lado derecho */
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;  /* Ajusta el tamaño del campo de búsqueda */
+}
+
+/* Campo de búsqueda con estilo adicional */
+.proveedores-search-input {
     width: 100%;
+    max-width: 300px;
     padding: 12px;
-    margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 25px;
     background-color: #f9f9f9;
@@ -33,35 +56,19 @@
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efecto de hover en el input de búsqueda */
-.search-input:focus {
-    border-color: #5c9ded;
-    box-shadow: 0 0 5px rgba(92, 157, 237, 0.4);
+.proveedores-search-input:focus {
+    border-color: #ff7777;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.4);
 }
 
-/* Estilo de la tabla */
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 16px;
+/* Contenedor del botón Agregar */
+.proveedores-search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
 }
 
-.data-table th,
-.data-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid #e0e0e0;
-    text-align: left;
-    font-size: 14px;
-}
-
-.data-table th {
-    background-color: #f2f2f2;
-    color: #333;
-    font-weight: normal;
-}
-
-/* Estilos del botón de agregar */
-.add-button {
+.proveedores-add-button {
     padding: 10px 20px;
     background-color: #e15050; /* Rojo */
     color: #fff;
@@ -74,157 +81,123 @@
     max-width: 300px;
 }
 
-.add-button:hover {
+.proveedores-add-button:hover {
     background-color: #a21818;
 }
 
-/* Contenedor de la barra de navegación */
-.navbar {
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo transparente */
-    padding: 1rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Contenedor para los links de navegación */
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    padding: 0;
-    margin: 0;
-    margin-left: auto;
-    margin-bottom: 20px;
-    font-size: 20px;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.navbar ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Asegura que el contenido principal esté debajo del navbar */
-.section-container-Usuario {
-    padding-top: 4rem; /* Ajusta el espacio según el alto del navbar */
-}
-
-/* Contenedor de búsqueda con alineación */
-.search-container {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-}
-
-/* Mensaje de error */
-.error-message {
-    color: #ff1900;
-    font-size: 14px;
-    text-align: center;
-}
-
-/* Estilos del formulario */
-.form-container {
+/* Contenedor del formulario */
+.proveedores-form-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 600px;
     margin: 20px auto;
 }
 
-.form-container h2 {
+.proveedores-form-container h2 {
     font-size: 20px;
     margin-bottom: 15px;
     color: #333;
     text-align: center;
 }
 
-.form-container input, 
-.form-container select, 
-.form-container button {
+/* Campos del formulario */
+.proveedores-form-input {
     width: 100%;
     padding: 12px;
     margin: 8px 0;
-    border: 1px solid #ddd;
+    border: 1px solid #ffffff;
     border-radius: 4px;
     font-size: 14px;
-}
-
-.form-container input[type="text"], 
-.form-container input[type="email"], 
-.form-container input[type="password"] {
-    background-color: #f9f9f9;
+    background-color: #ddd;
     color: #222;
 }
 
-.form-container select {
-    background-color: #f9f9f9;
-    cursor: pointer;
-    color: #222;
-}
-
-.form-container button {
-    background-color: #e15050; /* Rojo para el botón de submit */
+/* Botón de submit en el formulario */
+.proveedores-form-submit-btn {
+    background-color: #e15050;
     color: white;
+    padding: 12px;
     border: none;
+    border-radius: 4px;
+    font-size: 14px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
-.form-container button:hover {
+.proveedores-form-submit-btn:hover {
     background-color: #a21818;
 }
 
-/* Transición del formulario cuando se despliega */
-.form-container {
-    transition: transform 0.3s ease-in-out;
-    transform: translateY(10px);
+/* Tabla de datos */
+.proveedores-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    overflow-x: auto;
 }
 
-.form-container.open {
-    transform: translateY(0);
+.proveedores-data-table th,
+.proveedores-data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 14px;
 }
 
-/* Estilos de las acciones */
-.action-button {
-    padding: 10px 20px;
-    background-color: #016efd; /* Azul */
-    color: #fff;
+.proveedores-data-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Botones de acción en la tabla */
+.proveedores-action-button {
+    padding: 8px 16px; /* Aumentar el tamaño del padding */
     border: none;
     border-radius: 4px;
+    color: #fff;
     cursor: pointer;
+    font-size: 16px; /* Aumentar el tamaño de la fuente */
+    margin-right: 10px; /* Ajustar margen entre botones */
+}
+
+.proveedores-button_edit {
+    background-color: #e15050; /* Verde para editar */
+}
+
+.proveedores-button_edit:hover {
+    background-color: #a21818;
+}
+
+.proveedores-button_delete {
+    background-color: #e15050; /* Rojo para eliminar */
+}
+
+.proveedores-button_delete:hover {
+    background-color: #a21818;
+}
+
+/* Mensaje de error */
+.proveedores-error-message {
+    color: #e15050;
     font-size: 14px;
-    transition: background-color 0.3s;
-    margin-right: 8px;
-}
-
-.action-button:hover {
-    background-color: #064bca;
-}
-
-/* Estilo del contenedor principal */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     margin-top: 10px;
-    padding: 0 10px;
+    text-align: center;
 }
 
-/* Estilo para el lado izquierdo de los elementos */
-.left-side {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+/* Botón Cancelar */
+.proveedores-form-cancel-btn {
+    background-color: #e15050;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.proveedores-form-cancel-btn:hover {
+    background-color: #a21818;
 }
