@@ -1,61 +1,67 @@
-/* Contenedor principal de la sección */
-.sucursales-section-container-Usuario {
+/* Estilos generales para el contenedor principal */
+.sucursales-section-container {
+    background-color: #ffffff; /* Fondo blanco para todo el contenedor */
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 800px;
-    color: #333;
-    font-family: Arial, sans-serif;
-    margin-top: 60px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el título */
-.sucursales-section-container-Usuario h1,
-.sucursales-form-container h2 {
+/* Estilos para el encabezado */
+.sucursales-header-container {
+    display: flex;
+    justify-content: space-between; /* Título a la izquierda y campo de búsqueda a la derecha */
+    align-items: center;
+    margin-bottom: 20px; /* Separación mayor entre título y búsqueda */
+}
+
+.sucursales-header-container h1 {
     font-size: 22px;
+    margin: 0; /* Elimina el margen debajo del título */
     color: #222;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 16px;
 }
 
-/* Estilos del campo de búsqueda */
+
 .sucursales-search-input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
+    width: 250px;
+    padding: 10px;
+    margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 25px;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Fondo claro */
     color: #333;
     font-size: 14px;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Botón para mostrar/ocultar el formulario */
+/* Efectos cuando el campo de búsqueda tiene el foco */
+.sucursales-search-input:focus {
+    border-color: #ff7777;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.4);
+}
+
+
+
 .sucursales-toggle-form-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #fd6b6b;
+    padding: 10px 20px;
+    background-color: #e15050; /* Rojo */
     color: #fff;
     border: none;
-    border-radius: 25px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    margin-bottom: 20px;
     transition: background-color 0.3s;
+    max-width: 300px;
 }
 
 .sucursales-toggle-form-button:hover {
-    background-color: #d24a4a;
+    background-color: #a21818; /* Cambio de color en hover */
 }
 
-/* Estilos del formulario */
+/* Estilos para el formulario */
 .sucursales-form-container {
-    background-color: #fff;
+    background-color: #ffffff; /* Fondo blanco */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -63,83 +69,80 @@
     margin: 20px auto;
 }
 
-/* Estilos de los inputs del formulario */
-.sucursales-form-input {
+.sucursales-form-container h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+/* Estilo común para los campos del formulario */
+.sucursales-form-container input, 
+.sucursales-form-container select
+{
     width: 100%;
     padding: 12px;
     margin: 8px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
+    background-color: #f9f9f9;
+    color: #000000;
 }
 
-/* Estilos de los botones de acción en el formulario */
-.sucursales-form-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.sucursales-save-button {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 10px 20px;
-    font-size: 14px;
-}
-
-.sucursales-save-button:hover {
-    background-color: #218838;
-}
-
-.sucursales-cancel-button {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 10px 20px;
-    font-size: 14px;
-}
-
-.sucursales-cancel-button:hover {
-    background-color: #c82333;
-}
-
-/* Estilos de la tabla */
+/* Estilos para la tabla */
 .sucursales-data-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin-top: 16px;
+    background-color: #ffffff; /* Fondo blanco */
 }
 
+/* Estilo de celdas en la tabla */
 .sucursales-data-table th,
 .sucursales-data-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
+    padding: 10px 12px;
+    border-bottom:  solid #e0e0e0;
     text-align: left;
+    font-size: 14px;
+    color: #222;
 }
 
+/* Estilo de las cabeceras de la tabla */
 .sucursales-data-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #f2f2f2; /* Fondo claro */
+    color: #000000;
+    font-weight: normal;
 }
 
-/* Botones de acción en la tabla */
+/* Estilos de los botones de acción */
 .sucursales-action-button {
-    padding: 8px 12px;
-    margin: 0 4px;
+    padding: 8px 16px;
+    background-color: #e15050;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 12px;
-    background-color: #ffc107;
-    color: #fff;
-    transition: background-color 0.3s;
+    font-size: 14px;
+    margin-right: 10px;
 }
 
 .sucursales-action-button:hover {
-    background-color: #e0a800;
+    background-color: #a21818; /* Cambio de color cuando se pasa el mouse */
+}
+
+/* Estilos de los botones de formulario */
+.sucursales-save-button, .sucursales-cancel-button {
+    padding: 10px 20px;
+    background-color: #e15050;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.sucursales-save-button:hover, .sucursales-cancel-button:hover {
+    background-color: #a21818; /* Cambio de color en hover */
 }
