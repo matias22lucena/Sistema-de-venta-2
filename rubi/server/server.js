@@ -14,8 +14,10 @@
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'Maxigarcia4554', // Asegúrate de que la contraseña sea correcta
-    database: 'sistemaventas' // Asegúrate de que la base de datos exista
+
+    password: 'matute', // Asegúrate de que la contraseña sea correcta
+    database: 'SistemaVentas' // Asegúrate de que la base de datos exista
+
   });
 
   // Conecta a MySQL y verifica si hay errores
@@ -247,6 +249,35 @@ app.delete('/api/sucursales/:id', (req, res) => {
     res.status(200).json({ message: 'Sucursal eliminada exitosamente' });
   });
 });
+
+// Ruta para obtener la lista de productos en stock
+app.get('/api/stock', (req, res) => {
+  const query = 'SELECT * FROM STOCK';
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Error al obtener productos en stock:', err);
+          return res.status(500).json({ message: 'Error al obtener productos en stock' });
+      }
+      res.json(results);
+  });
+});
+
+app.post('/api/stock', (req, res) => {
+  const { producto, precioCompra, precioVenta, idSucursal, cantidad } = req.body;
+
+  // Asegúrate de enviar correctamente todos los valores
+  const query = `INSERT INTO STOCK (Producto, PrecioCompra, PrecioVenta, idSucursal, Cantidad, FechaRegistro) 
+                 VALUES (?, ?, ?, ?, ?, NOW())`;
+  
+  db.query(query, [producto, precioCompra, precioVenta, idSucursal, cantidad], (err) => {
+      if (err) {
+          console.error('Error al registrar producto en stock:', err);
+          return res.status(500).json({ message: 'Error al registrar producto en stock', error: err });
+      }
+      res.status(201).json({ message: 'Producto registrado exitosamente' });
+  });
+});
+
 
 
   // Iniciar el servidor en el puerto 3001
