@@ -98,74 +98,139 @@ function Proveedores() {
     );
 
     return (
-        <div className="section-container-Usuario">
-            <h1>Gestión de Proveedores</h1>
-            <button className="add-button" onClick={() => setShowForm(!showForm)}>Agregar Proveedor</button>
+        <div className="proveedores-section-container">
+      <div className="proveedores-header-container">
+        <h1>Gestión de Proveedores</h1>
+        <button
+          className="proveedores-add-button"
+          onClick={() => setShowForm(!showForm)}
+        >
+          Agregar Proveedor
+        </button>
+      </div>
+      <div className="proveedores-search-container">
+        <input
+          type="text"
+          placeholder="Buscar por nombre..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="proveedores-search-input"
+        />
+      </div>
 
-            {showForm && (
-                <div className="form-container">
-                    <h2>{isEditing ? 'Editar Proveedor' : 'Registrar Proveedor'}</h2>
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} required />
-                        <input type="text" name="direccion" placeholder="Dirección" value={formData.direccion} onChange={handleChange} required />
-                        <input type="text" name="telefono" placeholder="Teléfono" value={formData.telefono} onChange={handleChange} />
-                        <input type="email" name="email" placeholder="Correo" value={formData.email} onChange={handleChange} />
-                        <input type="text" name="tipoProveedor" placeholder="Tipo de Proveedor" value={formData.tipoProveedor} onChange={handleChange} />
-                        
-                        <label>Estado:</label>
-                        <select name="estado" value={formData.estado} onChange={handleChange}>
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                        
-                        <input type="date" name="fechaRegistro" value={formData.fechaRegistro} onChange={handleChange} />
-                        <button type="submit">{isEditing ? 'Actualizar' : 'Registrar'}</button>
-                    </form>
-                    {error && <p className="error-message">{error}</p>}
-                </div>
-            )}
-
+      {showForm && (
+        <div className="proveedores-form-container">
+          <h2>{isEditing ? "Editar Proveedor" : "Registrar Proveedor"}</h2>
+          <form onSubmit={handleSubmit}>
             <input
-                type="text"
-                placeholder="Buscar por nombre..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="search-input"
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              required
+              className="proveedores-form-input"
             />
-
-            <table className="data-table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
-                        <th>Correo</th>
-                        <th>Tipo Proveedor</th>
-                        <th>Estado</th>
-                        <th>Fecha Registro</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredProveedores.map((proveedor) => (
-                        <tr key={proveedor.idProveedor}>
-                            <td>{proveedor.Nombre}</td>
-                            <td>{proveedor.Direccion}</td>
-                            <td>{proveedor.Telefono}</td>
-                            <td>{proveedor.Email}</td>
-                            <td>{proveedor.TipoProveedor}</td>
-                            <td>{proveedor.Estado}</td>
-                            <td>{proveedor.FechaRegistro ? proveedor.FechaRegistro.slice(0, 10) : ''}</td>
-                            <td>
-                                <button onClick={() => handleEdit(proveedor)}>Editar</button>
-                                <button onClick={() => handleDelete(proveedor.idProveedor)}>Eliminar</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <input
+              type="text"
+              name="direccion"
+              placeholder="Dirección"
+              value={formData.direccion}
+              onChange={handleChange}
+              required
+              className="proveedores-form-input"
+            />
+            <input
+              type="text"
+              name="telefono"
+              placeholder="Teléfono"
+              value={formData.telefono}
+              onChange={handleChange}
+              className="proveedores-form-input"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Correo"
+              value={formData.email}
+              onChange={handleChange}
+              className="proveedores-form-input"
+            />
+            <input
+              type="text"
+              name="tipoProveedor"
+              placeholder="Tipo de Proveedor"
+              value={formData.tipoProveedor}
+              onChange={handleChange}
+              className="proveedores-form-input"
+            />
+            <input
+              type="date"
+              name="fechaRegistro"
+              value={formData.fechaRegistro}
+              onChange={handleChange}
+              className="proveedores-form-input"
+            />
+            <button type="submit" className="proveedores-form-submit-btn">
+              {isEditing ? "Actualizar" : "Registrar"}
+            </button>
+            <button
+              type="button"
+              className="proveedores-form-cancel-btn"
+              onClick={handleChange}
+            >
+              Cancelar
+            </button>
+          </form>
+          {error && <p className="proveedores-error-message">{error}</p>}
         </div>
-    );
+      )}
+
+      <table className="proveedores-data-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Tipo Proveedor</th>
+            <th>Fecha Registro</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredProveedores.map((proveedor) => (
+            <tr key={proveedor.idProveedor}>
+              <td>{proveedor.Nombre}</td>
+              <td>{proveedor.Direccion}</td>
+              <td>{proveedor.Telefono}</td>
+              <td>{proveedor.Email}</td>
+              <td>{proveedor.TipoProveedor}</td>
+              <td>
+                {proveedor.FechaRegistro
+                  ? proveedor.FechaRegistro.slice(0, 10)
+                  : ""}
+              </td>
+              <td>
+                <button
+                  onClick={() => handleEdit(proveedor)}
+                  className="proveedores-action-button proveedores-button_edit"
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleDelete(proveedor.idProveedor)}
+                  className="proveedores-action-button proveedores-button_delete"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default Proveedores;
