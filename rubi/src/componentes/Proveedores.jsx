@@ -116,12 +116,14 @@ function Proveedores() {
     setEditingProveedorId(null); // Elimina el ID de proveedor en edición
   };
 
+
+    return (
+        <div className="proveedores-section-container">
+=======
   const filteredProveedores = proveedores.filter((proveedor) =>
     proveedor.Nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  return (
-    <div className="proveedores-section-container">
       <div className="proveedores-header-container">
         <h1>Gestión de Proveedores</h1>
         <button
@@ -200,7 +202,9 @@ function Proveedores() {
             <button
               type="button"
               className="proveedores-form-cancel-btn"
+
               onClick={handleCancel}
+
             >
               Cancelar
             </button>

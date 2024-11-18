@@ -30,7 +30,7 @@ export function Home({ user, setUser }) {
                 <button className="menu-button" onClick={() => setActiveComponent('usuarios')}>Usuarios</button>
                 <button className="menu-button" onClick={() => setActiveComponent('proveedores')}>Proveedores</button>
                 <button className="menu-button" onClick={() => setActiveComponent('sucursales')}>Sucursales</button>
-                <button className="menu-button" onClick={() => setActiveComponent('productos')}>Productos</button>
+                
                 <button className="menu-button" onClick={() => setActiveComponent('ventas')}>Ventas</button>
                 {user.role === 'admin' && (
                     <>
