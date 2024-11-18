@@ -1,104 +1,129 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './proveedores.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./proveedores.css";
 
 function Proveedores() {
-    const [proveedores, setProveedores] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState({
-        nombre: '',
-        direccion: '',
-        telefono: '',
-        email: '',
-        tipoProveedor: '',
-        estado: 'Activo',
-        fechaRegistro: '' // Nuevo campo para la fecha
+  const [proveedores, setProveedores] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    nombre: "",
+    direccion: "",
+    telefono: "",
+    email: "",
+    tipoProveedor: "",
+    fechaRegistro: "",
+  });
+  const [error, setError] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingProveedorId, setEditingProveedorId] = useState(null);
+
+  useEffect(() => {
+    const fetchProveedores = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/api/proveedores"
+        );
+        setProveedores(response.data);
+      } catch (err) {
+        console.error("Error al cargar proveedores:", err);
+      }
+    };
+    fetchProveedores();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
-    const [error, setError] = useState(null);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editingProveedorId, setEditingProveedorId] = useState(null);
+  };
 
-    useEffect(() => {
-        const fetchProveedores = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/api/proveedores');
-                console.log('Datos recibidos:', response.data); // Depuración
-                setProveedores(response.data);
-            } catch (err) {
-                console.error('Error al cargar proveedores:', err);
-            }
-        };
-        fetchProveedores();
-    }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (isEditing) {
+        await axios.put(
+          `http://localhost:3001/api/proveedores/${editingProveedorId}`,
+          formData
+        );
+        setIsEditing(false);
+        setEditingProveedorId(null);
+      } else {
+        await axios.post("http://localhost:3001/api/proveedores", formData);
+      }
+      setShowForm(false);
+      setFormData({
+        nombre: "",
+        direccion: "",
+        telefono: "",
+        email: "",
+        tipoProveedor: "",
+        fechaRegistro: "",
+      });
+      setError(null);
+      const response = await axios.get("http://localhost:3001/api/proveedores");
+      setProveedores(response.data);
+    } catch (err) {
+      setError("Error al registrar o actualizar proveedor");
+    }
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ 
-            ...formData, 
-            [name]: value 
-        });
-    };
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/api/proveedores/${id}`);
+      setProveedores(
+        proveedores.filter((proveedor) => proveedor.idProveedor !== id)
+      );
+    } catch (err) {
+      setError("Error al eliminar proveedor");
+    }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            if (isEditing) {
-                await axios.put(`http://localhost:3001/api/proveedores/${editingProveedorId}`, formData);
-                setIsEditing(false);
-                setEditingProveedorId(null);
-            } else {
-                await axios.post('http://localhost:3001/api/proveedores', formData);
-            }
-            setShowForm(false);
-            setFormData({ nombre: '', direccion: '', telefono: '', email: '', tipoProveedor: '', estado: 'Activo', fechaRegistro: '' });
-            setError(null);
+  const handleEdit = (proveedor) => {
+    setFormData({
+      nombre: proveedor.Nombre,
+      direccion: proveedor.Direccion,
+      telefono: proveedor.Telefono,
+      email: proveedor.Email,
+      tipoProveedor: proveedor.TipoProveedor,
+      fechaRegistro: proveedor.FechaRegistro
+        ? proveedor.FechaRegistro.slice(0, 10)
+        : "",
+    });
+    setIsEditing(true);
+    setEditingProveedorId(proveedor.idProveedor);
+    setShowForm(true);
+  };
 
-            // Refrescar la lista de proveedores
-            const response = await axios.get('http://localhost:3001/api/proveedores');
-            setProveedores(response.data);
-        // eslint-disable-next-line no-unused-vars
-        } catch (err) {
-            setError('Error al registrar o actualizar proveedor');
-        }
-    };
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:3001/api/proveedores/${id}`);
-            setProveedores(proveedores.filter((proveedor) => proveedor.idProveedor !== id));
-        // eslint-disable-next-line no-unused-vars
-        } catch (err) {
-            setError('Error al eliminar proveedor');
-        }
-    };
+  const handleCancel = () => {
+    setShowForm(false); // Cierra el formulario
+    setFormData({
+      nombre: "",
+      direccion: "",
+      telefono: "",
+      email: "",
+      tipoProveedor: "",
+      fechaRegistro: "",
+    }); // Restaura los valores iniciales
+    setError(null); // Elimina posibles errores
+    setIsEditing(false); // Si estaba editando, restablece el estado de edición
+    setEditingProveedorId(null); // Elimina el ID de proveedor en edición
+  };
 
-    const handleEdit = (proveedor) => {
-        setFormData({
-            nombre: proveedor.Nombre,
-            direccion: proveedor.Direccion,
-            telefono: proveedor.Telefono,
-            email: proveedor.Email,
-            tipoProveedor: proveedor.TipoProveedor,
-            estado: proveedor.Estado || 'Inactivo',
-            fechaRegistro: proveedor.FechaRegistro ? proveedor.FechaRegistro.slice(0, 10) : ''
-        });
-        setIsEditing(true);
-        setEditingProveedorId(proveedor.idProveedor);
-        setShowForm(true);
-    };
-
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    const filteredProveedores = proveedores.filter((proveedor) =>
-        proveedor.Nombre.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     return (
         <div className="proveedores-section-container">
+=======
+  const filteredProveedores = proveedores.filter((proveedor) =>
+    proveedor.Nombre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
       <div className="proveedores-header-container">
         <h1>Gestión de Proveedores</h1>
         <button
@@ -177,7 +202,9 @@ function Proveedores() {
             <button
               type="button"
               className="proveedores-form-cancel-btn"
-              onClick={handleChange}
+
+              onClick={handleCancel}
+
             >
               Cancelar
             </button>
